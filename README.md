@@ -37,7 +37,7 @@ See the PHP info on http://localhost, or the static html page on http://localhos
 
 Or mount your own code to be served by PHP-FPM & Nginx
 
-    docker run -p 80:8080 -v ~/my-codebase:/var/www/html trafex/php-nginx
+    docker run -p 80:8080 -v ~/my-codebase:/var/www/app trafex/php-nginx
 
 ### Docker Hub repository name change
 Since we switched to PHP8 the repository name [trafex/alpine-nginx-php7](https://hub.docker.com/r/trafex/alpine-nginx-php7) didn't make sense anymore.
@@ -78,6 +78,25 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 RUN composer install --optimize-autoloader --no-interaction --no-progress
 ```
 
+### Building with Node (Yarn)
+If the application has resources or dependencies that are managed by Yarn, you'd have to build the dependencies in a separate stage and ship to the final stage.
+
+Laravel example:
+```Dockerfile
+
+FROM node:18.15-alpine3.17 AS resources
+
+COPY package.json yarn.lock webpack.mix.js ./
+COPY ./resources /app
+
+RUN yarn install && yarn production
+
+# continue stage build with the desired image and copy the source including the
+# dependencies downloaded by composer
+FROM images.sgbr.com.br/sgbrsist/php-nginx
+COPY --chown=nginx --from=resources /app /var/www/app
+```
+
 ### Building with composer
 
 If you are building an image with source code in it and dependencies managed by composer then the definition can be improved.
@@ -97,6 +116,6 @@ RUN composer install \
 
 # continue stage build with the desired image and copy the source including the
 # dependencies downloaded by composer
-FROM trafex/php-nginx
-COPY --chown=nginx --from=composer /app /var/www/html
+FROM images.sgbr.com.br/sgbrsist/php-nginx
+COPY --chown=nginx --from=composer /app /var/www/app
 ```
