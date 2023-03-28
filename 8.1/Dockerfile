@@ -21,6 +21,7 @@ RUN apk add --no-cache \
   php81-opcache \
   php81-tokenizer \
   php81-openssl \
+  php81-pdo \
   php81-phar \
   php81-session \
   php81-xml \

@@ -21,6 +21,7 @@ RUN apk add --no-cache \
   php7-opcache \
   php7-tokenizer \
   php7-openssl \
+  php7-pdo \
   php7-phar \
   php7-session \
   php7-xml \

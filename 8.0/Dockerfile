@@ -21,6 +21,7 @@ RUN apk add --no-cache \
   php8-opcache \
   php8-tokenizer \
   php8-openssl \
+  php8-pdo \
   php8-phar \
   php8-session \
   php8-xml \
