@@ -93,7 +93,7 @@ RUN yarn install && yarn production
 
 # continue stage build with the desired image and copy the source including the
 # dependencies downloaded by composer
-FROM images.sgbr.com.br/sgbrsist/php-nginx
+FROM public-images.sgbr.com.br/sgbrsist/php-nginx
 COPY --chown=nginx --from=resources /app /var/www/app
 ```
 
@@ -116,6 +116,6 @@ RUN composer install \
 
 # continue stage build with the desired image and copy the source including the
 # dependencies downloaded by composer
-FROM images.sgbr.com.br/sgbrsist/php-nginx
+FROM public-images.sgbr.com.br/sgbrsist/php-nginx
 COPY --chown=nginx --from=composer /app /var/www/app
 ```
