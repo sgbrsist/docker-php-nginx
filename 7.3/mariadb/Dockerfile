@@ -1,4 +1,4 @@
-ARG ALPINE_VERSION=3.15
+ARG ALPINE_VERSION=3.12
 FROM alpine:${ALPINE_VERSION}
 LABEL Maintainer="Wesley Schons dos Santos <wesley@sgbr.com.br>"
 LABEL Description="Lightweight container with Nginx 1.22 & PHP 7.4 based on Alpine Linux."
@@ -22,6 +22,7 @@ RUN apk add --no-cache \
   php7-tokenizer \
   php7-openssl \
   php7-pdo \
+  php7-pdo_mysql \
   php7-phar \
   php7-session \
   php7-xml \

@@ -1,7 +1,7 @@
-ARG ALPINE_VERSION=3.16
+ARG ALPINE_VERSION=3.17
 FROM alpine:${ALPINE_VERSION}
 LABEL Maintainer="Wesley Schons dos Santos <wesley@sgbr.com.br>"
-LABEL Description="Lightweight container with Nginx 1.22 & PHP 8.0 based on Alpine Linux."
+LABEL Description="Lightweight container with Nginx 1.22 & PHP 8.1 based on Alpine Linux."
 # Setup document root
 WORKDIR /var/www/app
 
@@ -9,23 +9,24 @@ WORKDIR /var/www/app
 RUN apk add --no-cache \
   curl \
   nginx \
-  php8 \
-  php8-ctype \
-  php8-curl \
-  php8-dom \
-  php8-fpm \
-  php8-gd \
-  php8-intl \
-  php8-mbstring \
-  php8-mysqli \
-  php8-opcache \
-  php8-tokenizer \
-  php8-openssl \
-  php8-pdo \
-  php8-phar \
-  php8-session \
-  php8-xml \
-  php8-xmlreader \
+  php81 \
+  php81-ctype \
+  php81-curl \
+  php81-dom \
+  php81-fpm \
+  php81-gd \
+  php81-intl \
+  php81-mbstring \
+  php81-mysqli \
+  php81-opcache \
+  php81-tokenizer \
+  php81-openssl \
+  php81-pdo \
+  php81-pdo_mysql \
+  php81-phar \
+  php81-session \
+  php81-xml \
+  php81-xmlreader \
   supervisor
 
 # Configure nginx - http
@@ -34,8 +35,8 @@ COPY config/nginx.conf /etc/nginx/nginx.conf
 COPY config/conf.d /etc/nginx/conf.d/
 
 # Configure PHP-FPM
-COPY config/fpm-pool.conf /etc/php8/php-fpm.d/www.conf
-COPY config/php.ini /etc/php8/conf.d/custom.ini
+COPY config/fpm-pool.conf /etc/php81/php-fpm.d/www.conf
+COPY config/php.ini /etc/php81/conf.d/custom.ini
 
 # Configure supervisord
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
