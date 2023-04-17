@@ -9,6 +9,8 @@ WORKDIR /var/www/app
 RUN apk add --no-cache \
   curl \
   nginx \
+  zip \
+  unzip \
   php7 \
   php7-ctype \
   php7-curl \
@@ -28,6 +30,7 @@ RUN apk add --no-cache \
   php7-session \
   php7-xml \
   php7-xmlreader \
+  php7-zip \
   supervisor
 
 # Configure nginx - http

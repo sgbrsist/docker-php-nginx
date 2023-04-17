@@ -9,6 +9,8 @@ WORKDIR /var/www/app
 RUN apk add --no-cache \
   curl \
   nginx \
+  zip \
+  unzip \
   php81 \
   php81-ctype \
   php81-curl \
@@ -29,6 +31,7 @@ RUN apk add --no-cache \
   php81-session \
   php81-xml \
   php81-xmlreader \
+  php81-zip \
   supervisor
 
 # Configure nginx - http
