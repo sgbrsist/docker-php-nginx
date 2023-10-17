@@ -32,7 +32,8 @@ RUN apk add --no-cache \
   php7-xml \
   php7-xmlreader \
   php7-zip \
-  supervisor
+  supervisor \
+  tzdata
 
 # Configure nginx - http
 COPY config/nginx.conf /etc/nginx/nginx.conf
