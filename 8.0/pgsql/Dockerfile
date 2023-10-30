@@ -8,6 +8,7 @@ WORKDIR /var/www/app
 # Install packages and remove default server definition
 RUN apk add --no-cache \
   curl \
+  ca-certificates \
   nginx \
   zip \
   unzip \
