@@ -33,6 +33,7 @@ RUN apk add --no-cache \
   php8-xml \
   php8-xmlreader \
   php8-zip \
+  php8-soap \
   supervisor \
   tzdata
 
