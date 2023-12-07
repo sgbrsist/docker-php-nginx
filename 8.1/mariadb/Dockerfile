@@ -41,6 +41,7 @@ RUN apk add --no-cache \
 COPY config/nginx.conf /etc/nginx/nginx.conf
 # Configure nginx - default server
 COPY config/conf.d /etc/nginx/conf.d/
+COPY config/openssl.conf /etc/ssl/openssl.cnf
 
 # Configure PHP-FPM
 COPY config/fpm-pool.conf /etc/php81/php-fpm.d/www.conf
