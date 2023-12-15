@@ -14,6 +14,8 @@ RUN apk add --no-cache \
   unzip \
   libxml2-dev \
   libpng-dev \
+  oniguruma-dev \
+  libxml2-utils \
   php81 \
   php81-bcmath \
   php81-ctype \
