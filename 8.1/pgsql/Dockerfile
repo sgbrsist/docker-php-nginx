@@ -33,9 +33,11 @@ RUN apk add --no-cache \
   php81-opcache \
   php81-tokenizer \
   php81-openssl \
+  php81-pcntl \
   php81-pdo \
   php81-pdo_pgsql \
   php81-phar \
+  php81-posix \
   php81-session \
   php81-soap \
   php81-simplexml \
