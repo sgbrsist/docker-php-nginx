@@ -1,7 +1,7 @@
-ARG ALPINE_VERSION=3.17
+ARG ALPINE_VERSION=3.19
 FROM alpine:${ALPINE_VERSION}
 LABEL Maintainer="Wesley Schons dos Santos <wesley@sgbr.com.br>"
-LABEL Description="Lightweight container with Nginx 1.22 & PHP 8.1 based on Alpine Linux."
+LABEL Description="Lightweight container with Nginx 1.22 & PHP 8.3 based on Alpine Linux."
 # Setup document root
 WORKDIR /var/www/app
 
@@ -16,35 +16,35 @@ RUN apk add --no-cache \
   libpng-dev \
   oniguruma-dev \
   libxml2-utils \
-  php81 \
-  php81-bcmath \
-  php81-ctype \
-  php81-curl \
-  php81-dom \
-  php81-fileinfo \
-  php81-fpm \
-  php81-ftp \
-  php81-gd \
-  php81-iconv \
-  php81-intl \
-  php81-json \
-  php81-mbstring \
-  php81-mysqli \
-  php81-opcache \
-  php81-tokenizer \
-  php81-openssl \
-  php81-pcntl \
-  php81-pdo \
-  php81-pdo_pgsql \
-  php81-phar \
-  php81-posix \
-  php81-session \
-  php81-soap \
-  php81-simplexml \
-  php81-xml \
-  php81-xmlreader \
-  php81-xmlwriter \
-  php81-zip \
+  php83 \
+  php83-bcmath \
+  php83-ctype \
+  php83-curl \
+  php83-dom \
+  php83-fileinfo \
+  php83-fpm \
+  php83-ftp \
+  php83-gd \
+  php83-iconv \
+  php83-intl \
+  php83-json \
+  php83-mbstring \
+  php83-mysqli \
+  php83-opcache \
+  php83-tokenizer \
+  php83-openssl \
+  php83-pcntl \
+  php83-pdo \
+  php83-pdo_pgsql \
+  php83-phar \
+  php83-posix \
+  php83-session \
+  php83-soap \
+  php83-simplexml \
+  php83-xml \
+  php83-xmlreader \
+  php83-xmlwriter \
+  php83-zip \
   supervisor \
   tzdata
 
@@ -55,18 +55,14 @@ COPY config/conf.d /etc/nginx/conf.d/
 COPY config/openssl.conf /etc/ssl/openssl.cnf
 
 # Configure PHP-FPM
-COPY config/fpm-pool.conf /etc/php81/php-fpm.d/www.conf
-COPY config/php.ini /etc/php81/conf.d/custom.ini
+COPY config/fpm-pool.conf /etc/php83/php-fpm.d/www.conf
+COPY config/php.ini /etc/php83/conf.d/custom.ini
 
 # Configure supervisord
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
 RUN chown -R nobody.nobody /var/www/app /run /var/lib/nginx /var/log/nginx
-
-# Force www-data group to have ID 33, which is the default in almost every server
-RUN groupmod -g 33 www-data
-RUN usermod -g www-data www-data
 
 # Switch to use a non-root user from here on
 USER nobody

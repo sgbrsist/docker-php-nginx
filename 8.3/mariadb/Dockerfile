@@ -25,7 +25,6 @@ RUN apk add --no-cache \
   php81-fpm \
   php81-ftp \
   php81-gd \
-  php81-iconv \
   php81-intl \
   php81-json \
   php81-mbstring \
@@ -33,11 +32,8 @@ RUN apk add --no-cache \
   php81-opcache \
   php81-tokenizer \
   php81-openssl \
-  php81-pcntl \
   php81-pdo \
-  php81-pdo_pgsql \
   php81-phar \
-  php81-posix \
   php81-session \
   php81-soap \
   php81-simplexml \
@@ -63,10 +59,6 @@ COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
 RUN chown -R nobody.nobody /var/www/app /run /var/lib/nginx /var/log/nginx
-
-# Force www-data group to have ID 33, which is the default in almost every server
-RUN groupmod -g 33 www-data
-RUN usermod -g www-data www-data
 
 # Switch to use a non-root user from here on
 USER nobody
