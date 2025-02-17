@@ -42,7 +42,11 @@ RUN apk add --no-cache \
   php81-xmlwriter \
   php81-zip \
   supervisor \
-  tzdata
+  tzdata \
+  libxext \
+  libxrender \
+  fontconfig \
+  gcompat
 
 # Configure nginx - http
 COPY config/nginx.conf /etc/nginx/nginx.conf

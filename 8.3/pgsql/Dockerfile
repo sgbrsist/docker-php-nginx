@@ -46,7 +46,11 @@ RUN apk add --no-cache \
   php83-xmlwriter \
   php83-zip \
   supervisor \
-  tzdata
+  tzdata \
+  libxext \
+  libxrender \
+  fontconfig \
+  gcompat
 
 # Configure nginx - http
 COPY config/nginx.conf /etc/nginx/nginx.conf
@@ -62,7 +66,7 @@ COPY config/php.ini /etc/php83/conf.d/custom.ini
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
-RUN chown -R nobody.nobody /var/www/app /run /var/lib/nginx /var/log/nginx
+RUN chown -R nobody.nobody /var/www/app /run /var/lib/nginx /var/log/nginx /tmp
 
 # Switch to use a non-root user from here on
 USER nobody

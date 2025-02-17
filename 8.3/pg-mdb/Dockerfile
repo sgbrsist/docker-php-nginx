@@ -53,7 +53,11 @@ RUN apk add --no-cache \
   jpeg \
   libxtst \
   supervisor \
-  tzdata
+  tzdata \
+  libxext \
+  libxrender \
+  fontconfig \
+  gcompat
 
 # Configure nginx - http
 COPY config/nginx.conf /etc/nginx/nginx.conf
