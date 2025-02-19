@@ -16,7 +16,6 @@ RUN apk add --no-cache \
   libpng-dev \
   oniguruma-dev \
   libxml2-utils \
-  libressl-dev \
   php83 \
   php83-bcmath \
   php83-ctype \
@@ -73,7 +72,7 @@ COPY config/php.ini /etc/php83/conf.d/custom.ini
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
-RUN chown -R nobody.nobody /var/www/app /run /var/lib/nginx /var/log/nginx
+RUN chown -R nobody.nobody /var/www/app /run /var/lib/nginx /var/log/nginx /tmp
 
 # Switch to use a non-root user from here on
 USER nobody
