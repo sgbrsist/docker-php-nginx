@@ -52,7 +52,8 @@ RUN apk add --no-cache \
   fontconfig \
   gcompat \
   imagemagick \
-  imagemagick-dev
+  imagemagick-dev \
+  php83-pecl-imagick
 
 # Configure nginx - http
 COPY config/nginx.conf /etc/nginx/nginx.conf
