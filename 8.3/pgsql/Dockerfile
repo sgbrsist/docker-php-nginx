@@ -50,7 +50,9 @@ RUN apk add --no-cache \
   libxext \
   libxrender \
   fontconfig \
-  gcompat
+  gcompat \
+  imagemagick \
+  imagemagick-dev
 
 # Configure nginx - http
 COPY config/nginx.conf /etc/nginx/nginx.conf
