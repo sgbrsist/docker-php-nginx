@@ -53,7 +53,8 @@ RUN apk add --no-cache \
   gcompat \
   imagemagick \
   imagemagick-dev \
-  php83-pecl-imagick
+  php83-pecl-imagick \
+  php83-pecl-swoole
 
 # Configure nginx - http
 COPY config/nginx.conf /etc/nginx/nginx.conf
