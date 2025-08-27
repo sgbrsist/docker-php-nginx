@@ -68,17 +68,13 @@ COPY config/php.ini /etc/php84/conf.d/custom.ini
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
-# RUN chown -R nobody.nobody /var/www/app /run /var/lib/nginx /var/log/nginx /tmp
-RUN chown -R www-data:www-data /var/www/app && \
-  chown -R nginx:nginx /run /var/lib/nginx /var/log/nginx
+RUN chown -R nobody:nobody /var/www/app /run /var/lib/nginx /var/log/nginx /tmp
 
 # Switch to use a non-root user from here on
-# USER nobody
-USER www-data
+USER nobody
 
 # Add application
-# COPY --chown=nobody src/ /var/www/app/
-COPY --chown=www-data src/ /var/www/app/
+COPY --chown=nobody src/ /var/www/app/
 
 # Expose the port nginx is reachable on
 EXPOSE 8080
