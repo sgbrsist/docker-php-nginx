@@ -1,6 +1,6 @@
 ARG ALPINE_VERSION=3.21
-# FROM alpine:${ALPINE_VERSION}
-FROM php:8.4-fpm-alpine${ALPINE_VERSION} AS base
+FROM alpine:${ALPINE_VERSION}
+# FROM php:8.4-fpm-alpine${ALPINE_VERSION} AS base
 LABEL Maintainer="Wesley Schons dos Santos <wesley@sgbr.com.br>"
 LABEL Description="Lightweight container with Nginx 1.22 & PHP 8.4 based on Alpine Linux."
 # Setup document root
@@ -69,6 +69,9 @@ COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
 RUN chown -R nobody:nobody /var/www/app /run /var/lib/nginx /var/log/nginx /tmp
+
+# Set Alias for php to run
+RUN ln -s /usr/bin/php84 /usr/bin/php && chmod +x /usr/bin/php
 
 # Switch to use a non-root user from here on
 USER nobody
